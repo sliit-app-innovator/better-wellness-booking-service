@@ -8,6 +8,7 @@ import java.util.Date;
 @Data
 public class AppointmentDTO {
     private Long id;
+    private String alias;
     private int counsellorId;
     private int customerId;
     private int availabilityId;
@@ -16,6 +17,14 @@ public class AppointmentDTO {
 
     public Long getId() {
         return id;
+    }
+
+    public String getAlias() {
+        return alias;
+    }
+
+    public void setAlias(String alias) {
+        this.alias = alias;
     }
 
     public void setId(Long id) {

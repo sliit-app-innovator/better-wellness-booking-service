@@ -1,6 +1,7 @@
 package com.sliit.betterwellness.controller;
 
 import com.sliit.betterwellness.dto.CounsellorAvailabilityDTO;
+import com.sliit.betterwellness.dto.CounsellorAvailabilityDTOs;
 import com.sliit.betterwellness.dto.CounsellorDTO;
 import com.sliit.betterwellness.service.CounsellorAvailabilityService;
 import com.sliit.betterwellness.service.CounsellorService;
@@ -33,11 +34,13 @@ public class AvailabilityController {
 	}
 
 	@GetMapping("/availability")
-	public ResponseEntity<List<CounsellorAvailabilityDTO>> search(@RequestParam(name = "counsellorId", required = false, defaultValue = "") String counsellorId,
+	public ResponseEntity<CounsellorAvailabilityDTOs> search(@RequestParam(name = "counsellorId", required = false, defaultValue = "") String counsellorId,
 																  @RequestParam(name = "date", required = false, defaultValue = "") String date,
 																  @RequestHeader Map<String, String> headers){
 		//	log.info("Counsellor save request correlation-id : {}", headers.get(Constants.HEADER_CORRELATION_ID));
-		return ResponseEntity.status(HttpStatus.CREATED).body(counsellorAvailabilityService.search(Integer.parseInt(counsellorId != null && !counsellorId.isEmpty()? counsellorId : "0"), date));
+		CounsellorAvailabilityDTOs counsellorAvailabilityDTOs = new CounsellorAvailabilityDTOs();
+		counsellorAvailabilityDTOs.setSlots(counsellorAvailabilityService.search(Integer.parseInt(counsellorId != null && !counsellorId.isEmpty()? counsellorId : "0"), date));
+		return ResponseEntity.status(HttpStatus.CREATED).body(counsellorAvailabilityDTOs);
 	}
 
 	@DeleteMapping("/availability/{id}")

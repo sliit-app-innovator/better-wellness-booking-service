@@ -23,6 +23,9 @@ public class Appointment {
     @Column(name = "counsellor_id", nullable = false)
     private int counsellorId;
 
+    @Column(name = "alias", nullable = true)
+    private String alias;;
+
     @Column(name = "customer_id", nullable = false)
     private int customerId;
 
@@ -34,6 +37,14 @@ public class Appointment {
 
     @Column(name = "notes")
     private String notes;
+
+    public String getAlias() {
+        return alias;
+    }
+
+    public void setAlias(String alias) {
+        this.alias = alias;
+    }
 
     public Long getId() {
         return id;
