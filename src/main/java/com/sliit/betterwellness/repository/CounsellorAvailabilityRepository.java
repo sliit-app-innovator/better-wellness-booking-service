@@ -15,6 +15,6 @@ public interface CounsellorAvailabilityRepository extends JpaRepository<Counsell
 	CounsellorAvailability getAvailability(int counsellorId, String date, String startTime);
 
 	@Transactional
-	@Query(value ="SELECT * FROM counsellor_availability WHERE (counsellor_id=:counsellorId OR 0=:counsellorId) AND (date=:date OR ''=:date)", nativeQuery = true)
+	@Query(value ="SELECT * FROM counsellor_availability WHERE (counsellor_id=:counsellorId OR 0=:counsellorId) AND (date=:date OR ''=:date) AND counsellor_availability.id NOT IN (SELECT availability_id FROM appointment)", nativeQuery = true)
 	List<CounsellorAvailability> search(int counsellorId, String date);
 }
