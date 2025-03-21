@@ -1,6 +1,7 @@
 package com.sliit.betterwellness.entity;
 
 import com.sliit.betterwellness.dto.AppointmentDTO;
+import com.sliit.betterwellness.dto.AppointmentViewDTO;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.modelmapper.ModelMapper;
@@ -18,7 +19,7 @@ public class Appointment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @Column(name = "counsellor_id", nullable = false)
     private int counsellorId;
@@ -46,11 +47,11 @@ public class Appointment {
         this.alias = alias;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -97,5 +98,11 @@ public class Appointment {
     public AppointmentDTO toDTO() {
         ModelMapper modelMapper = new ModelMapper();
         return modelMapper.map(this, AppointmentDTO.class);
+    }
+
+    public AppointmentViewDTO toAppointmentViewDTO() {
+        return new AppointmentViewDTO(
+                this.id, this.alias, this.counsellorId, this.customerId, this.availabilityId, this.createdDate, this.notes
+        );
     }
 }

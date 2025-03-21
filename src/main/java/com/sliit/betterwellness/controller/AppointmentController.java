@@ -1,6 +1,7 @@
 package com.sliit.betterwellness.controller;
 
 import com.sliit.betterwellness.dto.AppointmentDTO;
+import com.sliit.betterwellness.dto.AppointmentViewDTO;
 import com.sliit.betterwellness.dto.CustomerDTO;
 import com.sliit.betterwellness.service.AppointmentService;
 import com.sliit.betterwellness.service.CustomerService;
@@ -33,7 +34,7 @@ public class AppointmentController {
 	}
 
 	@GetMapping("/appointment/customer")
-	public ResponseEntity<List<AppointmentDTO>> searchCustomerAppointment(@RequestParam(name = "customerId", required = false, defaultValue = "") String customerId, @RequestHeader Map<String, String> headers){
+	public ResponseEntity<List<AppointmentViewDTO>> searchCustomerAppointment(@RequestParam(name = "customerId", required = false, defaultValue = "") String customerId, @RequestHeader Map<String, String> headers){
 	//	log.info("Customer search request correlation-id : {}", headers.get(Constants.HEADER_CORRELATION_ID));
 		return ResponseEntity.status(HttpStatus.OK).body(appointmentService.searchCustomerId(customerId != null && !customerId.isEmpty()? Integer.parseInt(customerId): 0));
 	}

@@ -1,7 +1,6 @@
 package com.sliit.betterwellness.repository;
 
 import com.sliit.betterwellness.entity.Appointment;
-import com.sliit.betterwellness.entity.CounsellorAvailability;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;
