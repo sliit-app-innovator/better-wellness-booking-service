@@ -8,6 +8,8 @@ import org.modelmapper.ModelMapper;
 @Data
 public class CounsellorAvailabilityDTO {
     private int id;
+    private String sessionName;
+    private String sessionDesc;
     private int counsellorId;
     private String date;
     private String startTime;
@@ -53,10 +55,28 @@ public class CounsellorAvailabilityDTO {
         this.endTime = endTime;
     }
 
+    public String getSessionName() {
+        return sessionName;
+    }
+
+    public void setSessionName(String sessionName) {
+        this.sessionName = sessionName;
+    }
+
+    public String getSessionDesc() {
+        return sessionDesc;
+    }
+
+    public void setSessionDesc(String sessionDesc) {
+        this.sessionDesc = sessionDesc;
+    }
+
     public CounsellorAvailability toEntity() {
         CounsellorAvailability counsellor = new CounsellorAvailability();
         counsellor.setCounsellorId(this.getCounsellorId());
         counsellor.setDate(this.getDate());
+        counsellor.setSessionName(this.getSessionName());
+        counsellor.setSessionDesc(this.getSessionDesc());
         counsellor.setStartTime(this.getStartTime());
         counsellor.setEndTime(this.getEndTime());
         return counsellor;

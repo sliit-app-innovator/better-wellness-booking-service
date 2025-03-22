@@ -19,6 +19,12 @@ public class CounsellorAvailability {
     @Column(name = "counsellor_id", nullable = false)
     private int counsellorId;
 
+    @Column(name = "session_name", nullable = false)
+    private String sessionName;
+
+    @Column(name = "session_desc", nullable = false,  length = 4000)
+    private String sessionDesc;
+
     @Column(name = "date", nullable = false)
     private String date;
 
@@ -66,6 +72,22 @@ public class CounsellorAvailability {
 
     public void setEndTime(String endTime) {
         this.endTime = endTime;
+    }
+
+    public String getSessionName() {
+        return sessionName;
+    }
+
+    public void setSessionName(String sessionName) {
+        this.sessionName = sessionName;
+    }
+
+    public String getSessionDesc() {
+        return sessionDesc;
+    }
+
+    public void setSessionDesc(String sessionDesc) {
+        this.sessionDesc = sessionDesc;
     }
 
     public CounsellorAvailabilityDTO toDTO() {
