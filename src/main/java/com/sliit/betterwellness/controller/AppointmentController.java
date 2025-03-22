@@ -40,7 +40,7 @@ public class AppointmentController {
 	}
 
 	@GetMapping("/appointment/counsellor")
-	public ResponseEntity<List<AppointmentDTO>> searchCounsellorAppointment(@RequestParam(name = "counsellorId", required = false, defaultValue = "") String counsellorId, @RequestHeader Map<String, String> headers){
+	public ResponseEntity<List<AppointmentViewDTO>> searchCounsellorAppointment(@RequestParam(name = "counsellorId", required = false, defaultValue = "") String counsellorId, @RequestHeader Map<String, String> headers){
 	//	log.info("Customer get request correlation-id : {}", headers.get(Constants.HEADER_CORRELATION_ID));
 		return ResponseEntity.status(HttpStatus.OK).body(appointmentService.searchCounsellor(counsellorId != null && !counsellorId.isEmpty()? Integer.parseInt(counsellorId): 0));
 	}

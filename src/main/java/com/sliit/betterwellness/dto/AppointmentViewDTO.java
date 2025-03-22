@@ -12,6 +12,7 @@ public class AppointmentViewDTO {
 	private Date createdDate;
 	private String notes;
 	private String counsellorName;
+	private String counsellorSpec;
 	private String date;
 	private String time;
 
@@ -103,5 +104,13 @@ public class AppointmentViewDTO {
 
 	public void setTime(String time) {
 		this.time = time;
+	}
+
+	public String getCounsellorSpec() {
+		return counsellorSpec;
+	}
+
+	public void setCounsellorSpec(String counsellorSpec) {
+		this.counsellorSpec = counsellorSpec;
 	}
 }

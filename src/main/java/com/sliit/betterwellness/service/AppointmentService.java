@@ -46,17 +46,28 @@ public class AppointmentService {
 				appointmentViewDTO.setCounsellorName(counsellor.getFirstName() + " " + counsellor.getLastName());
 				appointmentViewDTO.setDate(dateFormat.format(appointmentViewDTO.getCreatedDate()));
 				appointmentViewDTO.setTime(timeFormat.format(appointmentViewDTO.getCreatedDate()));
+				appointmentViewDTO.setCounsellorSpec(counsellor.getSpecializations());
 			}
 		}
 		return list;
 	}
 
-	public List<AppointmentDTO> searchCounsellor(int counsellorId){
+	public List<AppointmentViewDTO> searchCounsellor(int counsellorId){
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm a");
 		List<Appointment> appointments = appointmentRepository.findByCounsellorId(counsellorId);
-		return appointments.stream()
-				.map(Appointment::toDTO)
+		List<AppointmentViewDTO> list = appointments.stream()
+				.map(Appointment::toAppointmentViewDTO)
 				.toList();
+		if (!list.isEmpty()) {
+			for (AppointmentViewDTO appointmentViewDTO : list){
+				appointmentViewDTO.setDate(dateFormat.format(appointmentViewDTO.getCreatedDate()));
+				appointmentViewDTO.setTime(timeFormat.format(appointmentViewDTO.getCreatedDate()));
+			}
+		}
+		return list;
 	}
+
 
 	public AppointmentDTO delete(int id){
 		Optional<Appointment> AppointmentOp = appointmentRepository.findById(id);

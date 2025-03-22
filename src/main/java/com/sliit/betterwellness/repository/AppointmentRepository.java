@@ -10,11 +10,12 @@ import java.util.List;
 public interface AppointmentRepository extends JpaRepository<Appointment, Integer> {
 
 	@Transactional
-	@Query(value ="SELECT * FROM appointment WHERE customer_id=:customerId OR 0=:customerId", nativeQuery = true)
+	@Query(value ="SELECT a.* FROM appointment a INNER JOIN counsellor_availability b ON a.availability_id = b.id WHERE a.customer_id=:customerId OR 0=:customerId ORDER BY b.date DESC", nativeQuery = true)
 	List<Appointment> findByCustomerId(int customerId);
 
 	@Transactional
-	@Query(value ="SELECT * FROM appointment WHERE counsellor_id=:counsellorId OR 0=:counsellorId", nativeQuery = true)
+	@Query(value ="SELECT a.* FROM appointment a INNER JOIN counsellor_availability b ON a.availability_id = b.id WHERE a.counsellor_id=:counsellorId OR 0=:counsellorId ORDER BY b.date DESC", nativeQuery = true)
 	List<Appointment> findByCounsellorId(int counsellorId);
+
 	Appointment findByAvailabilityId(int availabilityId);
 }

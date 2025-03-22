@@ -25,7 +25,7 @@ public class Appointment {
     private int counsellorId;
 
     @Column(name = "alias", nullable = true)
-    private String alias;;
+    private String alias;
 
     @Column(name = "customer_id", nullable = false)
     private int customerId;
