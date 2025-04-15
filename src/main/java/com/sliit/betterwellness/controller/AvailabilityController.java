@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/better-wellness/booking")
+@RequestMapping("/appointment-service")
 @Slf4j
 public class AvailabilityController {
 
