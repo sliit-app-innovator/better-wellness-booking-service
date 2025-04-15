@@ -1,5 +1,5 @@
 # Use Amazon Corretto 17 Alpine as the base image
-FROM public.ecr.aws/amazoncorretto/amazoncorretto:17-alpine
+FROM public.ecr.aws/amazoncorretto/amazoncorretto:17
 
 # Set working directory inside the container
 WORKDIR /app
